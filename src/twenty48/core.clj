@@ -1,6 +1,18 @@
 (ns twenty48.core
   (:gen-class))
 
+
+
+  (def remove-zeroes (partial remove zero?))
+
+  (defn add-when-equal [coll]
+    (if (apply = coll)
+      (list (apply + coll))
+      coll
+      )
+    )
+
+  
 (defn move-grid-right
   "Moves an entire grid to the right"
   [grid]
