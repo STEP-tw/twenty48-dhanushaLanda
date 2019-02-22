@@ -2,24 +2,23 @@
   (:require [clojure.test :refer :all]
             [twenty48.core :refer :all]))
 
-(deftest remove-zeroes-test
-  (testing "rows with numbers that repeat"
-    (is (= '(2 2 4 5)
-            (remove-zeroes '(2 0 2 0 0 4 0 5))
-            ))))
-
-
-(deftest add-when-equal-test
-  (testing "add numbers when they are equal"
-    (is (= '(4)
-            (add-when-equal '(2 2))
-            ))
-    (is (= '(2 1)
-            (add-when-equal '(2 1))
-            )
+(deftest adding-number-at-the-beging-of-the-list 
+  (testing " adding number at the beging of the list when that number is equal to the last element of the list "
+    (is (= '(0 4 2 3)
+            (add-number-at-the-begining-of-the-list 
+              '(2 2 3) 2) )
+    )
+    (is (= '(3 2 2 3)
+            (add-number-at-the-begining-of-the-list 
+              '(2 2 3) 3 ))
+    )
+    (is (= '(3)
+            (add-number-at-the-begining-of-the-list 
+            '() 3))
     )
   )
 )
+
 (deftest moving-grid-right
   (testing "rows with numbers that repeat"
     (is (= '((0 0 0 4)
