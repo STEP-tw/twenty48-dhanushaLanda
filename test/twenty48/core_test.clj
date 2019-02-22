@@ -35,6 +35,24 @@
   )
 )
 
+(deftest appending-required-zeroes-at-begining
+  (testing "Attch zeroes to at the begining"
+    (is ( = '(0 4 4 2) 
+              (append-required-zeroes-at-begining '(4 4 2))
+        )
+    )
+  )
+)
+
+(deftest appending-required-zeroes-at-the-end
+  (testing "Attch zeroes to at the end"
+    (is ( = '(4 4 2 0) 
+              (append-required-zeroes-at-the-end '(4 4 2))
+        )
+    )
+  )
+)
+
 (deftest moving-grid-right
   (testing "rows with numbers that repeat"
     (is (= '((0 0 0 4)
@@ -47,17 +65,17 @@
               (2 0 2 0)
               (0 4 4 0)))))))
 
-; (deftest moving-grid-left
-;   (testing "rows with numbers that repeat"
-;     (is (= '((4 0 0 0)
-;              (2 4 0 0)
-;              (4 0 0 0)
-;              (8 0 0 0))
-;            (move-grid-left
-;             '((0 0 2 2)
-;               (0 2 0 4)
-;               (2 0 2 0)
-;               (0 4 4 0)))))))
+(deftest moving-grid-left
+  (testing "rows with numbers that repeat"
+    (is (= '((4 0 0 0)
+             (2 4 0 0)
+             (4 0 0 0)
+             (8 0 0 0))
+           (move-grid-left
+            '((0 0 2 2)
+              (0 2 0 4)
+              (2 0 2 0)
+              (0 4 4 0)))))))
 
 ; (deftest moving-grid-up
 ;   (testing "rows with numbers that repeat"

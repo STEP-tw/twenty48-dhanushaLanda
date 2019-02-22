@@ -26,23 +26,20 @@
 (def remove-zeroes (partial remove zero?))
 (remove-zeroes '(0 2 2 4 0))
 
-; ================================================================================
+; appends zeroes to make count of the list to 4 at the begining
+(defn append-required-zeroes-at-begining [coll]  (into coll (repeat (- 4 (count coll ) ) 0)) )
 
-(defn attach-required-zeroes-at-begining [coll]  (into coll (repeat (- 4 (count coll ) ) 0)) )
+; appends zeroes to make count of the list to 4 at the end 
+(def append-required-zeroes-at-the-end (comp append-required-zeroes-at-begining (partial apply vector)))
 
-; (def attach-required-zeroes ((repeat 0)(partial - 4 )))
-(attach-required-zeroes-at-begining [2 3])
+;Moves a row towards right 
+(def move-row-right (comp append-required-zeroes-at-begining reverse remove-zeroes add-two-same-consecutive-number remove-zeroes))
 
-; ================================================================================
+;Moves a row towards left
 
-(def move-row-right (comp attach-required-zeroes-at-begining reverse remove-zeroes add-two-same-consecutive-number remove-zeroes))
-(move-row-right '(2 2 4 2)) ;(0 4 4 2) (4 4 2 0)
-
-; ================================================================================
-
-(def move-row-left (comp reverse remove-zeroes add-two-same-consecutive-number remove-zeroes))
-
+(def move-row-left (comp append-required-zeroes-at-the-end reverse remove-zeroes add-two-same-consecutive-number remove-zeroes))
 (move-row-left '(2 2 0 2))
+
 ; =========================================================================
 (def move-grid-right
   "Moves an entire grid to the right"
@@ -53,7 +50,7 @@
 
 (def move-grid-left
   "Moves an entire grid to the left"
-  (partial map move-row-right))
+  (partial map move-row-left))
 
 
   (move-grid-left
