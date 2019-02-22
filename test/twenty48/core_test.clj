@@ -4,16 +4,16 @@
 
 (deftest adding-number-at-the-beging-of-the-list 
   (testing " adding number at the beging of the list when that number is equal to the last element of the list "
-    (is (= '(0 4 2 3)
-            (add-number-at-the-begining-of-the-list 
+    (is (= '(2 2 3 2)
+            (add-number-at-the-end-of-the-list 
               '(2 2 3) 2) )
     )
-    (is (= '(3 2 2 3)
-            (add-number-at-the-begining-of-the-list 
+    (is (= '(2 2 6 0)
+            (add-number-at-the-end-of-the-list 
               '(2 2 3) 3 ))
     )
     (is (= '(3)
-            (add-number-at-the-begining-of-the-list 
+            (add-number-at-the-end-of-the-list 
             '() 3))
     )
   )
@@ -22,7 +22,7 @@
 
 (deftest adding-two-same-consecutive-numbers
   (testing "add two consecutive numbers when they are same in reverse order"
-    (is ( = '(0 8 2) (add-two-same-consecutive-number '(2 4 4)))
+    (is ( = '(2 8 0) (add-two-same-consecutive-number '(2 4 4)))
     )
   )
   (testing "Gives empty list back when input is empty"
@@ -30,7 +30,7 @@
     )
   )
   (testing "Don't add number when it's result of someother addition "
-    (is ( = '(0 8 8 ) (add-two-same-consecutive-number '(8 4 4)))
+    (is ( = '( 8 8 0) (add-two-same-consecutive-number '(8 4 4)))
     )
   )
 )
