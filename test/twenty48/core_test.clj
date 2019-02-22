@@ -19,6 +19,22 @@
   )
 )
 
+
+(deftest adding-two-same-consecutive-numbers
+  (testing "add two consecutive numbers when they are same in reverse order"
+    (is ( = '(0 8 2) (add-two-same-consecutive-number '(2 4 4)))
+    )
+  )
+  (testing "Gives empty list back when input is empty"
+    (is ( = '() (add-two-same-consecutive-number '()))
+    )
+  )
+  (testing "Don't add number when it's result of someother addition "
+    (is ( = '(0 8 8 ) (add-two-same-consecutive-number '(8 4 4)))
+    )
+  )
+)
+
 (deftest moving-grid-right
   (testing "rows with numbers that repeat"
     (is (= '((0 0 0 4)

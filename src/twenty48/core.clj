@@ -19,7 +19,7 @@
 )
 (add-two-same-consecutive-number '(2 4 4))
 (add-two-same-consecutive-number '(8 4 4))
-(add-two-same-consecutive-number '(2 2 2 2))
+(add-two-same-consecutive-number '())
 
 ; ================================================================================
 
@@ -40,9 +40,9 @@
 
 ; ================================================================================
 
-(def move-row-left (comp reverse move-row-right))
+(def move-row-left (comp reverse remove-zeroes add-two-same-consecutive-number remove-zeroes))
 
-(move-row-left '(2 2 4 2))
+(move-row-left '(2 2 0 2))
 ; =========================================================================
 (def move-grid-right
   "Moves an entire grid to the right"
@@ -51,10 +51,17 @@
 
 ;================================================================================
 
-(defn move-grid-left
+(def move-grid-left
   "Moves an entire grid to the left"
-  [grid]
-  ())
+  (partial map move-row-right))
+
+
+  (move-grid-left
+    '((0 0 2 2)
+      (0 2 0 4)
+      (2 0 2 0)
+      (0 4 4 0)))
+
 
 (defn move-grid-down
   "Moves an entire grid down"
