@@ -35,18 +35,18 @@
 
 ; ================================================================================
 
-(def move-list-right (comp attach-required-zeroes-at-begining reverse remove-zeroes add-two-same-consecutive-number remove-zeroes))
-(move-list-right '(2 2 4 2)) ;(0 4 4 2) (4 4 2 0)
+(def move-row-right (comp attach-required-zeroes-at-begining reverse remove-zeroes add-two-same-consecutive-number remove-zeroes))
+(move-row-right '(2 2 4 2)) ;(0 4 4 2) (4 4 2 0)
 
 ; ================================================================================
 
-(def move-list-left (comp reverse move-list-right))
+(def move-row-left (comp reverse move-row-right))
 
-(move-list-left '(2 2 4 2))
+(move-row-left '(2 2 4 2))
 ; =========================================================================
 (def move-grid-right
   "Moves an entire grid to the right"
-  (partial map move-list-right)
+  (partial map move-row-right)
 )
 
 ;================================================================================
