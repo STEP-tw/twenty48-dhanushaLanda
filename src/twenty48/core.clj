@@ -2,17 +2,15 @@
   (:gen-class))
 
 ; adding number at the end of the list when that number is equal to the last element of the list
+(defn add-number-at-the-begining-of-the-list [coll num]
+  (if (= (first coll) num)
+    (conj (rest coll) (+ (first coll) num) 0)
+    (conj coll num)))
 
-(defn add-number-at-the-end-of-the-list [coll num]
-  (if (= (last coll) num)
-    (concat (butlast coll) (list (+ (last coll) num)) (list 0))
-    (concat coll (list num))))
+;add consecutive numbers in given lists
+(def add-two-same-consecutive-number (comp (partial reduce add-number-at-the-begining-of-the-list '()) reverse))
 
-; ================================================================================
-(def add-two-same-consecutive-number 
-  (partial reduce add-number-at-the-end-of-the-list '()))
-
-; ================================================================================
+;Removes all zeroes
 (def remove-zeroes (partial remove zero?))
 
 ; appends zeroes to make count of the list to 4 at the begining
@@ -24,28 +22,20 @@
 ;Moves a row towards right 
 (def move-row-right (comp append-required-zeroes-at-begining remove-zeroes add-two-same-consecutive-number remove-zeroes))
 
-
 ;Moves a row towards left
-(def move-row-left (comp append-required-zeroes-at-the-end remove-zeroes add-two-same-consecutive-number remove-zeroes))
+(def move-row-left (comp append-required-zeroes-at-the-end reverse remove-zeroes add-two-same-consecutive-number reverse remove-zeroes ))
 
-; =========================================================================
-(def move-grid-right
-  "Moves an entire grid to the right"
-  (partial map move-row-right)
-)
+;transpose the gives lists
+(def transpose-grid (partial apply map list))
 
-;================================================================================
+;"Moves an entire grid to the right"
+(def move-grid-right (partial map move-row-right) )
 
-(def move-grid-left
-  "Moves an entire grid to the left"
-  (partial map move-row-left))
+;"Moves an entire grid to the left"
+(def move-grid-left (partial map move-row-left))
 
-(defn move-grid-down
-  "Moves an entire grid down"
-  [grid]
-  grid)
+;"Moves an entire grid down"
+(def move-grid-down (comp transpose-grid move-grid-right transpose-grid))
 
-(defn move-grid-up
-  "Moves an entire grid up"
-  [grid]
-  grid)
+;"Moves an entire grid up"
+(def move-grid-up (comp transpose-grid move-grid-left transpose-grid))
